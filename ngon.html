@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Scriptable UI</title>
+  <style>
+    body {
+      border: 15px solid #ff0000;
+      border-radius: 14px;
+      padding: 150px;
+      animation: led 2s infinite;
+      margin: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+    }
+
+    @keyframes led {
+      0% { border-color: #ff0000; }
+      50% { border-color: #00ff00; }
+      100% { border-color: #0000ff; }
+    }
+
+    .container {
+      width: 600px;
+      height: 550px;
+      background-color: #C0C0C0;
+      border: 2px solid #333;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      padding: 20px;
+      box-sizing: border-box;
+      overflow: auto;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      font-size: 16px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>BY BAO KHANH 7M5 MEDIA</h2>
+  <h2>Key:</h2>
+  <input type="password" id="password" placeholder="Vui Lòng Nhập Key Đã Được Cung Cấp">
+  <button onclick="checkPassword()">OK</button>
+
+  <div id="menu" class="hidden">
+    <h2>Chọn Chức Năng</h2>
+    <select id="optionSelect">
+      <option value="">-- Chọn --</option>
+      <option>🎮Dipi Config☠️</option>
+      <option>AimLock</option>
+      <option>Aimbot</option>
+      <option>Nhẹ tâm</option>
+      <option>headers</option>
+      <option>Seni Trix v1⚙️🔫</option>
+      <option>HeadLock</option>
+      <option>Mượt Màn</option>
+    </select>
+    <input type="file" id="filePicker">
+    <button onclick="chooseApp()">Tiếp tục</button>
+  </div>
+
+  <div id="appSelect" class="hidden">
+    <h2>Chọn ứng dụng mở</h2>
+    <button onclick="openApp('freefire')">Mở Free Fire</button>
+    <button onclick="openApp('freefiremax')">Mở Free Fire Max</button>
+  </div>
+</div>
+
+<script>
+  const passwordCorrect = "ZCVPLAPL1";
+
+  function checkPassword() {
+    const input = document.getElementById('password').value;
+    if (input === passwordCorrect) {
+      alert("Key Đúng!");
+      document.getElementById('menu').classList.remove('hidden');
+    } else {
+      alert("Sai Key Vui Lòng Nhập Lại🚫!");
+    }
+  }
+
+  function chooseApp() {
+    const option = document.getElementById('optionSelect').value;
+    if (option) {
+      alert("Đã bật " + option);
+      const file = document.getElementById('filePicker').files[0];
+      if (file) {
+        alert("Đã chọn tệp: " + file.name);
+      }
+      document.getElementById('appSelect').classList.remove('hidden');
+    } else {
+      alert("Vui lòng chọn chức năng.");
+    }
+  }
+
+  function openApp(app) {
+    if (app === 'freefire') {
+      window.location.href = 'freefire://';
+    } else if (app === 'freefiremax') {
+      window.location.href = 'freefiremax://';
+    }
+  }
+</script>
+</body>
+</html>
